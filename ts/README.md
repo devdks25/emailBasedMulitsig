@@ -13,7 +13,9 @@ yarn install
 Before using the CLI, please prepare addresses of `EmitEmailCommand` and DKIM registry contracts by running the `DeployEmitEmailCommand.s.sol` script under the contracts directory.
 
 You can use the CLI by the below command format:
+
 `npx ts-node src/cli.ts --emit-email-command-addr <EMIT_EMAIL_COMMAND_ADDRESS> --account-code <ACCOUNT_CODE> --email-addr <EMAIL_ADDRESS> --owner-addr <OWNER_ADDRESS_OF_EMAIL_AUTH> --template-idx <TEMPLATE_IDX> --command-value <COMMAND_VALUE> --subject <SUBJECT> --body <BODY>`
+
 Each argument is defined as follows:
 - `EMIT_EMAIL_COMMAND_ADDRESS`: an Ethereum address of the `EmitEmailCommand` command.
 - `ACCOUNT_CODE`: an account code for your `EmailAuth` contract, e.g., "0x22a2d51a892f866cf3c6cc4e138ba87a8a5059a1d80dea5b8ee8232034a105b7".
