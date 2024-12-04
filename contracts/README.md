@@ -1,11 +1,11 @@
-## Set up
+## Requirements
+- Newer than or equal to `forge 0.2.0 (13497a5)`.
+
+## Setup
 
 ```bash
 yarn install
 ```
-
-## Requirements
-- Newer than or equal to `forge 0.2.0 (13497a5)`.
 
 ## Build and Test
 
