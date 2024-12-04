@@ -10,7 +10,9 @@ yarn install
 ```
 
 ## How to use
-Before using the CLI, please prepare addresses of `EmitEmailCommand` and DKIM registry contracts by running the `DeployEmitEmailCommand.s.sol` script under the contracts directory.
+Before using the CLI, you need to prepare 1) a private key to broadcast transactions, 2) the relayer's URL, and 3) addresses of `EmitEmailCommand` and DKIM registry contracts.
+The first two values should be set in the `.env` file, as demonstrated in the `.env.example` file.
+The contract addresses can be obtained from the output of the `DeployEmitEmailCommand.s.sol` script located in the contracts directory.
 
 You can use the CLI by the below command format:
 
