@@ -3,10 +3,10 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
 
-import "@zk-email/ether-email-auth-contracts/src/utils/Verifier.sol";
-import "@zk-email/ether-email-auth-contracts/src/utils/Groth16Verifier.sol";
+import "@zk-email/email-tx-builder-contracts/src/utils/Verifier.sol";
+import "@zk-email/email-tx-builder-contracts/src/utils/Groth16Verifier.sol";
 import "@zk-email/contracts/UserOverrideableDKIMRegistry.sol";
-import "@zk-email/ether-email-auth-contracts/src/EmailAuth.sol";
+import "@zk-email/email-tx-builder-contracts/src/EmailAuth.sol";
 import "../src/EmitEmailCommand.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 

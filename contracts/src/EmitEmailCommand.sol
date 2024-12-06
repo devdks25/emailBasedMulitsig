@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.12;
 
-import "@zk-email/ether-email-auth-contracts/src/EmailAuth.sol";
+import "@zk-email/email-tx-builder-contracts/src/EmailAuth.sol";
 import "@openzeppelin/contracts/utils/Create2.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
