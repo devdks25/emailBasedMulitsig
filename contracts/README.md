@@ -40,6 +40,7 @@ forge script script/DeployEmitEmailCommand.s.sol --rpc-url $RPC_URL --chain-id $
 ```
 
 You can see deployed contract addresses in the log of the script.
+
 Example:
 ```
 == Logs ==
