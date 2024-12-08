@@ -8,6 +8,7 @@ import "@zk-email/email-tx-builder-contracts/src/utils/Groth16Verifier.sol";
 import "@zk-email/contracts/UserOverrideableDKIMRegistry.sol";
 import "@zk-email/email-tx-builder-contracts/src/EmailAuth.sol";
 import "../src/EmitEmailCommand.sol";
+import "../test/utils/ERC20Mintable.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
 contract Deploy is Script {
@@ -17,6 +18,7 @@ contract Deploy is Script {
     Verifier verifier;
     EmailAuth emailAuthImpl;
     EmitEmailCommand emitEmailCommand;
+    ERC20Mintable erc20;
 
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
@@ -83,10 +85,24 @@ contract Deploy is Script {
             emitEmailCommand = new EmitEmailCommand(
                 address(verifier),
                 address(dkim),
-                address(emailAuthImpl)
+                address(emailAuthImpl),
+                2
             );
             console.log(
                 "EmitEmailCommand deployed at: %s",
+                address(emitEmailCommand)
+            );
+        }
+        // Deploy erc20Mintable for testing
+        {
+            erc20 = new ERC20Mintable();
+            console.log(
+                "erc20Mintable deployed at: %s",
+                address(erc20)
+            );
+            erc20.mint(address(emitEmailCommand), 1e10);
+            console.log(
+                "minted 1e10 tokens to EmitEmailCommand: %s",
                 address(emitEmailCommand)
             );
         }

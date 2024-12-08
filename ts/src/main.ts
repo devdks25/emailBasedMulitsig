@@ -9,7 +9,7 @@ import {
     WalletClient
 } from "viem";
 import { privateKeyToAccount } from 'viem/accounts'
-import { baseSepolia } from 'viem/chains';
+import { sepolia } from 'viem/chains';
 import { RelayerSubmitRequest, RelayerStatusResponse, CommandTypes, RelayerSubmitResponse, EmailAuthMsg, RelayerAccountSaltResponse } from './types';
 import axios from "axios";
 
@@ -27,11 +27,11 @@ if (!process.env.RELAYER_URL) {
 const relayerUrl: string = process.env.RELAYER_URL;
 
 const publicClient = createPublicClient({
-    chain: baseSepolia,
+    chain: sepolia,
     transport: http()
 })
 const walletClient = createWalletClient({
-    chain: baseSepolia,
+    chain: sepolia,
     transport: http()
 })
 
@@ -78,40 +78,9 @@ async function fetchCommandTemplate(emitEmailCommandContract: EmitEmailCommandCo
  * @param commandValue the value of the command parameter
  * @returns the command parameters
  */
-function buildCommandParams(templateIdx: CommandTypes, commandValue: string): string[] {
-    let commandParams: string[] = [];
-    switch (templateIdx) {
-        case CommandTypes.String:
-            commandParams.push(commandValue as string);
-            break;
-        case CommandTypes.Uint:
-            const uintValue = Number(commandValue);
-            if (Number.isInteger(uintValue) === false) {
-                throw new Error('Uint value must be an integer');
-            }
-            if (uintValue < 0) {
-                throw new Error('Uint value must be greater than or equal to 0');
-            }
-            commandParams.push(commandValue);
-            break;
-        case CommandTypes.Int:
-            const intValue = Number(commandValue);
-            if (Number.isInteger(intValue) === false) {
-                throw new Error('Int value must be an integer');
-            }
-            commandParams.push(commandValue);
-            break;
-        case CommandTypes.Decimals:
-            // [TODO] Assert the format of the given value
-            commandParams.push(commandValue);
-            break;
-        case CommandTypes.EthAddr:
-            // [TODO] Assert the format of the given value
-            commandParams.push(commandValue as string);
-            break;
-        default:
-            throw new Error('Unsupported command type');
-    }
+function buildCommandParams(templateIdx: Number, commandValue: string): string[] {
+    let commandParams: string[] = commandValue.split(',');
+    
     return commandParams;
 }
 
@@ -159,7 +128,7 @@ async function buildRelayerInput(
         emailAddress,
         subject,
         body,
-        chain: "baseSepolia"
+        chain: "sepolia"
     };
 }
 
